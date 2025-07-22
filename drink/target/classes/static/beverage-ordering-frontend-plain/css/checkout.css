@@ -1,0 +1,137 @@
+/* css/checkout.css */
+.checkout-form {
+    background-color: var(--background-dark);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.checkout-form h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+}
+
+.cart-summary-checkout {
+    background-color: var(--background-light);
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 25px;
+}
+
+.cart-summary-checkout h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.cart-summary-checkout ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.cart-summary-checkout ul li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95em;
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.cart-summary-checkout ul li:last-child {
+    border-bottom: none;
+}
+
+.cart-summary-checkout .total-line {
+    font-weight: bold;
+    font-size: 1.1em;
+    border-top: 1px solid var(--border-color);
+    padding-top: 10px;
+    margin-top: 10px;
+    color: var(--primary-color);
+}
+
+.member-section {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.member-section p {
+    margin: 5px 0;
+}
+
+.delivery-options .option-group,
+.payment-options .option-group {
+    background-color: var(--background-light);
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.delivery-options .option-group label,
+.payment-options .option-group label {
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.delivery-options .radio-group,
+.payment-options .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.delivery-options .radio-group div,
+.payment-options .radio-group div {
+    display: flex;
+    align-items: center;
+}
+
+.hidden-fields {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px dashed var(--border-color);
+    border-radius: 5px;
+    background-color: var(--background-light);
+}
+
+.checkout-submit-btn {
+    width: 100%;
+    font-size: 1.4em;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+/* RWD for checkout page */
+@media (max-width: 768px) {
+    .checkout-form {
+        padding: 20px;
+        margin: 10px auto;
+    }
+    .checkout-form h2 {
+        font-size: 1.8em;
+    }
+    .delivery-options .radio-group,
+    .payment-options .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .checkout-submit-btn {
+        font-size: 1.2em;
+        padding: 12px;
+    }
+}

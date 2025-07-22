@@ -1,0 +1,132 @@
+/* css/counter.css */
+.counter-layout {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.pending-orders-section, .completed-orders-section {
+    padding: 20px;
+    background-color: var(--background-dark);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+    flex: 1; /* 平分空間 */
+    min-width: 300px;
+}
+
+.pending-orders-section h2,
+.completed-orders-section h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.order-list {
+    max-height: 600px; /* 限制高度可滾動 */
+    overflow-y: auto;
+    padding-right: 10px; /* 避免滾動條遮擋內容 */
+}
+
+.order-card {
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.2s ease;
+}
+
+.order-card:hover {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.order-header .order-id {
+    color: var(--secondary-color);
+}
+
+.order-header .order-time {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.order-items-summary {
+    font-size: 0.95em;
+    color: var(--text-color-dark);
+    margin-bottom: 10px;
+}
+
+.order-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.order-details {
+    margin-top: 15px;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 15px;
+}
+
+.order-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.order-details ul li {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.order-details ul li strong {
+    color: var(--primary-color);
+}
+
+.toggle-details-btn {
+    font-size: 0.9em;
+    color: var(--primary-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
+.toggle-details-btn:hover {
+    color: #43A047;
+}
+
+/* 櫃台點餐按鈕 */
+.counter-add-order-btn-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.counter-add-order-btn {
+    font-size: 1.1em;
+    padding: 10px 20px;
+}
+
+
+/* RWD for counter page */
+@media (max-width: 992px) {
+    .counter-layout {
+        flex-direction: column;
+    }
+    .pending-orders-section, .completed-orders-section {
+        flex: auto;
+        width: 100%;
+    }
+    .order-list {
+        max-height: 400px;
+    }
+}

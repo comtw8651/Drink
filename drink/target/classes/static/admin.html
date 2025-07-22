@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台管理 - 美味飲品站</title>
+    <link rel="stylesheet" href="beverage-ordering-frontend-plain/css/normalize.css">
+    <link rel="stylesheet" href="beverage-ordering-frontend-plain/css/main.css">
+    <link rel="stylesheet" href="beverage-ordering-frontend-plain/css/admin.css">
+</head>
+<body>
+    <header>
+        <h1>後台管理</h1>
+        <nav>
+            <ul>
+                <li><a href="#" id="logout-btn">登出</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container admin-layout">
+        <aside class="admin-sidebar">
+            <nav>
+                <ul>
+                    <li><a href="#" class="sidebar-link active" data-section="dashboard">儀表板 (統計)</a></li>
+                    <li><a href="#" class="sidebar-link" data-section="product-management">飲品管理</a></li>
+                    <li><a href="#" class="sidebar-link" data-section="topping-management">副料管理</a></li>
+                    <li><a href="#" class="sidebar-link" data-section="order-records">訂單記錄</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <section class="admin-content">
+            <div id="dashboard-section" class="admin-section active">
+                <h2>儀表板 (統計)</h2>
+                <div class="form-group">
+                    <label for="stat-date-filter">選擇日期範圍:</label>
+                    <input type="date" id="stat-date-filter" value="">
+                    <button id="filter-daily-btn" class="btn btn-secondary">日統計</button>
+                    <button id="filter-weekly-btn" class="btn btn-secondary">週統計</button>
+                    <button id="filter-monthly-btn" class="btn btn-secondary">月統計</button>
+                </div>
+                <div class="statistics-grid" id="statistics-display">
+                    <div class="stat-card">
+                        <h3>今日總銷售額</h3>
+                        <p>NT$ <span id="today-sales">0.00</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>今日訂單數</h3>
+                        <p><span id="today-orders">0</span> 筆</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>本週總銷售額</h3>
+                        <p>NT$ <span id="week-sales">0.00</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>本月總銷售額</h3>
+                        <p>NT$ <span id="month-sales">0.00</span></p>
+                    </div>
+                    </div>
+            </div>
+
+            <div id="product-management-section" class="admin-section">
+                <h2>飲品管理</h2>
+                <div class="add-new-btn-container">
+                    <button id="add-product-btn" class="btn btn-primary add-new-btn">新增飲品</button>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>名稱</th>
+                            <th>分類</th>
+                            <th>小杯價格</th>
+                            <th>大杯價格</th>
+                            <th>啟用</th>
+                            <th>可熱飲</th>
+                            <th>可冰飲</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-table-body">
+                        </tbody>
+                </table>
+            </div>
+
+            <div id="topping-management-section" class="admin-section">
+                <h2>副料管理</h2>
+                <div class="add-new-btn-container">
+                    <button id="add-topping-btn" class="btn btn-primary add-new-btn">新增副料</button>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>名稱</th>
+                            <th>價格</th>
+                            <th>啟用</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="topping-table-body">
+                        </tbody>
+                </table>
+            </div>
+
+            <div id="order-records-section" class="admin-section">
+                <h2>訂單記錄</h2>
+                <div class="form-group">
+                    <label for="order-record-date-filter">篩選日期:</label>
+                    <input type="date" id="order-record-date-filter">
+                    <button id="filter-order-records-btn" class="btn btn-secondary">篩選</button>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>時間</th>
+                            <th>總金額</th>
+                            <th>取餐方式</th>
+                            <th>支付方式</th>
+                            <th>狀態</th>
+                            <th>會員電話</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-records-table-body">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 美味飲品站. All rights reserved.</p>
+    </footer>
+
+    <div id="product-modal" class="modal admin-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-product-modal-btn">&times;</span>
+            <h2 id="product-modal-title"></h2>
+            <form id="product-form">
+                <input type="hidden" id="product-id">
+                <div class="form-group">
+                    <label for="product-name">名稱:</label>
+                    <input type="text" id="product-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-category">分類:</label>
+                    <select id="product-category" required>
+                        <option value="">請選擇</option>
+                        <option value="紅茶類">紅茶類</option>
+                        <option value="綠茶類">綠茶類</option>
+                        <option value="烏龍茶類">烏龍茶類</option>
+                        <option value="其他類">其他類</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-price-small">小杯價格:</label>
+                    <input type="number" id="product-price-small" step="0.01" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="product-price-large">大杯價格:</label>
+                    <input type="number" id="product-price-large" step="0.01" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="product-image-url">圖片 URL:</label>
+                    <input type="text" id="product-image-url">
+                </div>
+                <div class="form-group">
+                    <label for="product-is-active">啟用販售:</label>
+                    <input type="checkbox" id="product-is-active" checked>
+                </div>
+                <div class="form-group">
+                    <label for="product-can-be-hot">可做熱飲:</label>
+                    <input type="checkbox" id="product-can-be-hot" checked>
+                </div>
+                <div class="form-group">
+                    <label for="product-can-be-cold">可做冰飲:</label>
+                    <input type="checkbox" id="product-can-be-cold" checked>
+                </div>
+                <div class="form-group">
+                    <label for="product-min-sweetness">最低甜度 (0-5):</label>
+                    <input type="number" id="product-min-sweetness" min="0" max="5">
+                </div>
+                <div class="form-group">
+                    <label for="product-max-sweetness">最高甜度 (0-5):</label>
+                    <input type="number" id="product-max-sweetness" min="0" max="5">
+                </div>
+                <div class="form-group">
+                    <label for="product-min-ice">最低冰塊 (0-3):</label>
+                    <input type="number" id="product-min-ice" min="0" max="3">
+                </div>
+                <div class="form-group">
+                    <label for="product-max-ice">最高冰塊 (0-3):</label>
+                    <input type="number" id="product-max-ice" min="0" max="3">
+                </div>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-secondary" id="cancel-product-modal-btn">取消</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="topping-modal" class="modal admin-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-topping-modal-btn">&times;</span>
+            <h2 id="topping-modal-title"></h2>
+            <form id="topping-form">
+                <input type="hidden" id="topping-id">
+                <div class="form-group">
+                    <label for="topping-name">名稱:</label>
+                    <input type="text" id="topping-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="topping-price">價格:</label>
+                    <input type="number" id="topping-price" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="topping-is-active">啟用販售:</label>
+                    <input type="checkbox" id="topping-is-active" checked>
+                </div>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-secondary" id="cancel-topping-modal-btn">取消</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="beverage-ordering-frontend-plain/js/utils.js"></script>
+    <script src="beverage-ordering-frontend-plain/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>點餐頁面 - 美味飲品站</title>
+    <link rel="stylesheet" href="beverage-ordering-frontend-plain/css/normalize.css">
+    <link rel="stylesheet" href="beverage-ordering-frontend-plain/css/main.css">
+    <link rel="stylesheet" href="beverage-ordering-frontend-plain/css/ordering.css">
+</head>
+<body>
+    <header>
+        <h1>美味飲品站</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="ordering.html">開始點餐</a></li>
+                <li><a href="#" id="switch-user-btn">切換使用者</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container ordering-layout">
+        <section class="product-section">
+            <h2>飲品選擇</h2>
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">所有飲品</button>
+                <button class="category-tab" data-category="紅茶類">紅茶類</button>
+                <button class="category-tab" data-category="綠茶類">綠茶類</button>
+                <button class="category-tab" data-category="烏龍茶類">烏龍茶類</button>
+                <button class="category-tab" data-category="其他類">其他類</button>
+            </div>
+            <div id="product-grid" class="product-grid">
+                </div>
+        </section>
+
+        <section class="cart-section">
+            <h2>您的購物車</h2>
+            <div id="cart-list" class="cart-list">
+                <p>購物車是空的。</p>
+            </div>
+            <div class="cart-summary">
+                <span>總計:</span>
+                <span>NT$ <span id="total-price">0.00</span></span>
+            </div>
+            <div class="checkout-btn-container">
+                <button id="checkout-btn" class="btn btn-primary checkout-btn">前往結帳</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 美味飲品站. All rights reserved.</p>
+    </footer>
+
+    <div id="product-options-modal" class="modal product-options-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-options-modal-btn">&times;</span>
+            <h2 id="modal-product-name"></h2>
+            <div class="form-group">
+                <label>杯型:</label>
+                <div id="size-options">
+                    <input type="radio" name="size" value="小杯" id="size-small"> <label for="size-small">小杯</label>
+                    <input type="radio" name="size" value="大杯" id="size-large"> <label for="size-large">大杯</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>冰熱:</label>
+                <div id="temperature-options">
+                    <input type="radio" name="temperature" value="冰" id="temp-cold"> <label for="temp-cold">冰</label>
+                    <input type="radio" name="temperature" value="熱" id="temp-hot"> <label for="temp-hot">熱</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sweetness">甜度:</label>
+                <select id="sweetness"></select>
+            </div>
+            <div class="form-group">
+                <label for="ice">冰塊:</label>
+                <select id="ice"></select>
+            </div>
+            <div class="form-group">
+                <label>副料:</label>
+                <div id="toppings-list"></div>
+            </div>
+            <div class="form-group">
+                <label for="quantity">數量:</label>
+                <input type="number" id="quantity" value="1" min="1">
+            </div>
+            <div class="modal-actions">
+                <button id="add-to-cart-modal-btn" class="btn btn-primary">加入購物車</button>
+                <button id="cancel-modal-btn" class="btn btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-login-modal-btn">&times;</span>
+            <h2>登入</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">帳號:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">密碼:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary login-submit-btn">登入</button>
+            </form>
+            <p style="margin-top: 15px; text-align: center; font-size: 0.9em; color: #666;">
+                請注意：此為櫃台/後台登入，購買者無需登入。
+            </p>
+        </div>
+    </div>
+
+    <script src="beverage-ordering-frontend-plain/js/utils.js"></script>
+    <script src="beverage-ordering-frontend-plain/js/ordering.js"></script>
+</body>
+</html>

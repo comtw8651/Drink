@@ -1,0 +1,253 @@
+/* css/main.css */
+:root {
+    --primary-color: #4CAF50; /* 清新綠 */
+    --secondary-color: #607D8B; /* 沉穩灰藍 */
+    --accent-color: #FFC107; /* 醒目黃 */
+    --background-light: #FDFDFD; /* 淺背景 */
+    --background-dark: #ECEFF1; /* 深一點的背景 */
+    --text-color-dark: #333;
+    --text-color-light: #fff;
+    --border-color: #ddd;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans CJK TC', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    background-color: var(--background-light);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px var(--shadow-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+nav ul {
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: var(--text-color-light);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+main {
+    flex-grow: 1; /* 讓 main 內容區塊佔據剩餘空間 */
+    padding: 20px 0;
+}
+
+footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color-light);
+    text-align: center;
+    padding: 15px 20px;
+    margin-top: auto; /* 將 footer 推到底部 */
+}
+
+/* 按鈕樣式 */
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+}
+
+.btn-primary:hover {
+    background-color: #43A047; /* Slightly darker green */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-color-light);
+}
+
+.btn-secondary:hover {
+    background-color: #546E7A; /* Slightly darker grey-blue */
+    transform: translateY(-2px);
+}
+
+.btn-accent {
+    background-color: var(--accent-color);
+    color: var(--text-color-dark);
+}
+
+.btn-accent:hover {
+    background-color: #FFB300;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: #EF5350; /* Red */
+    color: var(--text-color-light);
+}
+
+.btn-danger:hover {
+    background-color: #E53935;
+    transform: translateY(-2px);
+}
+
+
+/* 表單元素樣式 */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.form-group input[type="checkbox"],
+.form-group input[type="radio"] {
+    margin-right: 8px;
+}
+
+/* 模態視窗通用樣式 */
+.modal {
+    display: none; /* 預設隱藏 */
+    position: fixed; /* 固定定位 */
+    z-index: 2000; /* 確保在最上層 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 佔滿整個寬度 */
+    height: 100%; /* 佔滿整個高度 */
+    overflow: auto; /* 如果內容溢出則顯示滾動條 */
+    background-color: rgba(0, 0, 0, 0.6); /* 半透明黑色背景 */
+    display: flex; /* 使用 flex 居中內容 */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--background-light);
+    margin: auto; /* 自動外邊距實現居中 */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    width: 90%; /* 預設寬度 */
+    max-width: 500px; /* 最大寬度 */
+    position: relative;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--text-color-dark);
+}
+
+/* RWD 響應式調整 */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    header h1 {
+        font-size: 1.5em;
+    }
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .container {
+        padding: 10px;
+    }
+    .btn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+        padding: 8px;
+    }
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 8px;
+    }
+    header h1 {
+        font-size: 1.3em;
+    }
+    nav ul {
+        gap: 10px;
+    }
+    .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>櫃台管理 - 美味飲品站</title>
+    <link rel="stylesheet" href="beverage-ordering-frontend-plain/css/normalize.css">
+    <link rel="stylesheet" href="beverage-ordering-frontend-plain/css/main.css">
+    <link rel="stylesheet" href="beverage-ordering-frontend-plain/css/counter.css">
+</head>
+<body>
+    <header>
+        <h1>櫃台管理</h1>
+        <nav>
+            <ul>
+                <li><a href="#" id="logout-btn">登出</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container counter-layout">
+        <section class="pending-orders-section">
+            <h2>待處理訂單</h2>
+            <div class="counter-add-order-btn-container">
+                <button id="add-counter-order-btn" class="btn btn-accent counter-add-order-btn">櫃台新增訂單</button>
+            </div>
+            <div id="pending-orders-list" class="order-list">
+                <p>目前沒有待處理訂單。</p>
+            </div>
+        </section>
+
+        <section class="completed-orders-section">
+            <h2>已完成 / 已取消訂單</h2>
+            <div id="completed-orders-list" class="order-list">
+                <p>目前沒有已完成或已取消訂單。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 美味飲品站. All rights reserved.</p>
+    </footer>
+
+    <div id="counter-ordering-modal" class="modal product-options-modal">
+        <div class="modal-content" style="max-width: 900px; width: 95%;">
+            <span class="close-btn" id="close-counter-ordering-modal-btn">&times;</span>
+            <h2>櫃台點餐</h2>
+            <div class="ordering-layout">
+                <section class="product-section" style="flex: 3;">
+                    <h3>選擇飲品</h3>
+                    <div class="category-tabs" id="counter-category-tabs">
+                        <button class="category-tab active" data-category="all">所有飲品</button>
+                        <button class="category-tab" data-category="紅茶類">紅茶類</button>
+                        <button class="category-tab" data-category="綠茶類">綠茶類</button>
+                        <button class="category-tab" data-category="烏龍茶類">烏龍茶類</button>
+                        <button class="category-tab" data-category="其他類">其他類</button>
+                    </div>
+                    <div id="counter-product-grid" class="product-grid">
+                        </div>
+                </section>
+
+                <section class="cart-section" style="flex: 1; position: static;">
+                    <h3>訂單預覽</h3>
+                    <div id="counter-cart-list" class="cart-list" style="max-height: 300px;">
+                        <p>目前沒有項目。</p>
+                    </div>
+                    <div class="cart-summary">
+                        <span>總計:</span>
+                        <span>NT$ <span id="counter-total-price">0.00</span></span>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="counter-phone-number">會員手機號碼 (選填):</label>
+                        <input type="tel" id="counter-phone-number" placeholder="輸入手機號碼">
+                    </div>
+                     <p>累積點數: <span id="counter-member-points">0</span> 點</p>
+
+
+                    <div class="form-group">
+                        <label>取餐方式:</label>
+                        <div>
+                            <input type="radio" name="counter-delivery-type" value="內用" id="counter-delivery-dine-in" checked> <label for="counter-delivery-dine-in">內用</label>
+                            <input type="radio" name="counter-delivery-type" value="自取" id="counter-delivery-pickup"> <label for="counter-delivery-pickup">自取</label>
+                            <input type="radio" name="counter-delivery-type" value="外送" id="counter-delivery-delivery"> <label for="counter-delivery-delivery">外送</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>結帳方式:</label>
+                        <div>
+                            <input type="radio" name="counter-payment-method" value="現金結帳" id="counter-payment-cash" checked> <label for="counter-payment-cash">現金結帳</label>
+                            <input type="radio" name="counter-payment-method" value="線上結帳" id="counter-payment-online"> <label for="counter-payment-online">線上結帳</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="counter-datetime-group" style="display: none;">
+                        <label for="counter-datetime-input" id="counter-datetime-label">選擇時間:</label>
+                        <input type="datetime-local" id="counter-datetime-input">
+                    </div>
+                    <div class="form-group" id="counter-address-group" style="display: none;">
+                        <label for="counter-delivery-address">送達地址:</label>
+                        <input type="text" id="counter-delivery-address" placeholder="輸入送達地址">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="counter-order-notes">備註 (選填):</label>
+                        <textarea id="counter-order-notes" rows="2"></textarea>
+                    </div>
+
+                    <div class="modal-actions" style="justify-content: center; gap: 15px;">
+                        <button id="submit-counter-order-btn" class="btn btn-primary">確認點單</button>
+                        <button id="cancel-counter-order-btn" class="btn btn-secondary">取消</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div id="product-options-modal" class="modal product-options-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-options-modal-btn">&times;</span>
+            <h2 id="modal-product-name"></h2>
+            <div class="form-group">
+                <label>杯型:</label>
+                <div id="size-options"></div>
+            </div>
+            <div class="form-group">
+                <label>冰熱:</label>
+                <div id="temperature-options"></div>
+            </div>
+            <div class="form-group">
+                <label for="sweetness">甜度:</label>
+                <select id="sweetness"></select>
+            </div>
+            <div class="form-group">
+                <label for="ice">冰塊:</label>
+                <select id="ice"></select>
+            </div>
+            <div class="form-group">
+                <label>副料:</label>
+                <div id="toppings-list"></div>
+            </div>
+            <div class="form-group">
+                <label for="quantity">數量:</label>
+                <input type="number" id="quantity" value="1" min="1">
+            </div>
+            <div class="modal-actions">
+                <button id="add-to-cart-modal-btn" class="btn btn-primary">加入購物車</button>
+                <button id="cancel-modal-btn" class="btn btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="beverage-ordering-frontend-plain/js/utils.js"></script>
+    <script src="beverage-ordering-frontend-plain/js/counter.js"></script>
+</body>
+</html>

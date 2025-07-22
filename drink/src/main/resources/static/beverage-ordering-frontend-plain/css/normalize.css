@@ -1,0 +1,29 @@
+/* normalize.css 內容，請從 https://necolas.github.io/normalize.css/ 下載並貼上 */
+/* 或使用一個精簡版 */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption, blockquote, dl, dd {
+    margin: 0;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+img {
+    max-width: 100%;
+    display: block;
+}
+input, button, textarea, select {
+    font: inherit;
+}

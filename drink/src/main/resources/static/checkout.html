@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>結帳 - 美味飲品站</title>
+    <link rel="stylesheet" href="beverage-ordering-frontend-plain/css/normalize.css">
+    <link rel="stylesheet" href="beverage-ordering-frontend-plain/css/main.css">
+    <link rel="stylesheet" href="beverage-ordering-frontend-plain/css/checkout.css">
+</head>
+<body>
+    <header>
+        <h1>美味飲品站</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="ordering.html">返回點餐</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <form id="checkout-form" class="checkout-form">
+            <h2>訂單結帳</h2>
+
+            <div class="cart-summary-checkout">
+                <h3>您的訂單內容</h3>
+                <ul id="checkout-cart-list">
+                    </ul>
+                <div class="total-line">
+                    <span>總金額:</span>
+                    <span>NT$ <span id="checkout-total-price">0.00</span></span>
+                </div>
+            </div>
+
+            <div class="member-section">
+                <h3>會員點數累積</h3>
+                <div class="form-group">
+                    <label for="phone-number">手機號碼 (用於累積點數):</label>
+                    <input type="tel" id="phone-number" name="phoneNumber" placeholder="請輸入手機號碼 (選填)" pattern="[0-9]{10}">
+                </div>
+                <p>目前累積點數: <span id="member-points">0</span> 點</p>
+                <p style="font-size: 0.9em; color: #888;">每消費 NT$100 累積 1 點</p>
+            </div>
+
+            <div class="delivery-options">
+                <h3>取餐方式</h3>
+                <div class="option-group">
+                    <div class="radio-group">
+                        <div>
+                            <input type="radio" name="delivery-type" value="內用" id="delivery-dine-in" checked>
+                            <label for="delivery-dine-in">內用</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="delivery-type" value="自取" id="delivery-pickup">
+                            <label for="delivery-pickup">自取</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="delivery-type" value="外送" id="delivery-delivery">
+                            <label for="delivery-delivery">外送</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-options">
+                <h3>結帳方式</h3>
+                <div class="option-group">
+                    <div class="radio-group">
+                        <div id="cash-payment-option">
+                            <input type="radio" name="payment-method" value="現金結帳" id="payment-cash" checked>
+                            <label for="payment-cash">現金結帳</label>
+                        </div>
+                        <div id="online-payment-option">
+                            <input type="radio" name="payment-method" value="線上結帳" id="payment-online">
+                            <label for="payment-online">線上結帳 (綠界)</label>
+                        </div>
+                        <div id="site-payment-option" style="display: none;">
+                            <input type="radio" name="payment-method" value="現場結帳" id="payment-site">
+                            <label for="payment-site">現場結帳</label>
+                        </div>
+                        <div id="delivery-payment-option" style="display: none;">
+                            <input type="radio" name="payment-method" value="送達結帳" id="payment-delivery-on-site">
+                            <label for="payment-delivery-on-site">送達結帳</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="pickup-delivery-details" class="hidden-fields" style="display: none;">
+                <div class="form-group">
+                    <label for="datetime-input" id="datetime-label">選擇時間:</label>
+                    <input type="datetime-local" id="datetime-input" name="pickupDeliveryTime">
+                </div>
+                <div class="form-group" id="delivery-address-group" style="display: none;">
+                    <label for="delivery-address">送達地址:</label>
+                    <input type="text" id="delivery-address" name="deliveryAddress" placeholder="請輸入送達地址">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="order-notes">訂單備註 (選填):</label>
+                <textarea id="order-notes" name="notes" rows="3" placeholder="例如：少冰、不要吸管"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary checkout-submit-btn">確認結帳</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 美味飲品站. All rights reserved.</p>
+    </footer>
+
+    <script src="beverage-ordering-frontend-plain/js/utils.js"></script>
+    <script src="beverage-ordering-frontend-plain/js/checkout.js"></script>
+</body>
+</html>
